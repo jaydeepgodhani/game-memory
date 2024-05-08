@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import Square from './Square';
 import makeBoard from '../utils/makeBoard';
+import { ArrowPathIcon } from '@heroicons/react/16/solid'
 
-const arrayy = [...Array.from(Array(8).keys()), ...Array.from(Array(8).keys())]
-const values = makeBoard(arrayy);
+const arrayy = [...Array.from(Array(1).keys()), ...Array.from(Array(1).keys())]
+let values = makeBoard(arrayy);
 console.log(values);
 
 const Gamegrid = () => {
@@ -23,7 +24,21 @@ const Gamegrid = () => {
       found.push(i);
     }
   }
-  console.log(found);
+
+  const allHidden = [];
+  for (let i=0; i<16; i++) {
+    if(hidden[i] === true) {
+      allHidden.push(i);
+    }
+  }
+
+  const makeItFalse = () => {
+    const newClicked = clicked.slice();
+    newClicked[found[0]] = false;
+    newClicked[found[1]] = false;
+    setClicked(newClicked);
+  }
+
   if(found.length === 2){
     if(values[found[0]] === values[found[1]]) {
       const newClicked = clicked.slice();
@@ -37,8 +52,20 @@ const Gamegrid = () => {
       setHidden(newHidden);
 
     } else {
-      console.log("else...");
+      setTimeout(makeItFalse, 1500);
     }
+  }
+
+  const restartGame = () => {
+    setHidden(Array(16).fill(false));
+    values = makeBoard(arrayy);
+    console.log(values);
+  }
+
+  if(allHidden.length === 16) {
+    return (
+      <ArrowPathIcon className='size-12 text-blue-200 cursor-pointer' onClick={restartGame} />
+    )
   }
 
   return (
