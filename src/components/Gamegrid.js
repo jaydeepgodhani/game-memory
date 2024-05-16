@@ -3,43 +3,56 @@ import Square from './Square';
 import fillBoardWithValues from '../utils/fillBoardWithValues';
 import { ArrowPathIcon } from '@heroicons/react/16/solid';
 import modifyStats from '../utils/modifyStats';
-import fillArray from '../utils/fillArray';
+import playAudio from '../utils/playAudio';
 
 let boardValues = fillBoardWithValues();
+const clickAudio = new Audio('/onclick.mp3');
+const hideAudio = new Audio('/hidden.wav');
 
-const Gamegrid = () => {
+const Gamegrid = ({speakerOn}) => {
 
   const [hidden, setHidden] = useState(Array(16).fill(false));
   const [clicked, setClicked] = useState(Array(16).fill(false));
   const [freeze, setFreeze] = useState(false);
   const hiddenSquares = useRef(0);
+  const clickedSquares = useRef([]);
 
   function performClick(index) {
     if(!freeze) {
       const newClicked = clicked.slice();
       newClicked[index] = true;
+      clickedSquares.current.push(index);
       setClicked(newClicked);
+      playAudio(speakerOn, clickAudio);
     }
   }
 
-  const clickedSquares = [];
-  fillArray(clicked, clickedSquares);
+  if(clickedSquares.current.length === 2){
 
-  if(clickedSquares.length === 2){
-    if(boardValues[clickedSquares[0]] === boardValues[clickedSquares[1]]) {
-      modifyStats(clicked, setClicked, false, clickedSquares);
-      modifyStats(hidden, setHidden, true, clickedSquares);
+    const clickedIndex = clickedSquares.current.slice();
+    if(!freeze) setFreeze(true);
+
+    if(boardValues[clickedIndex[0]] === boardValues[clickedIndex[1]]) {
+      setTimeout(() => {
+        modifyStats(hidden, setHidden, true, clickedIndex)
+        playAudio(speakerOn, hideAudio);
+        setFreeze(false)
+      }, 1000);
       hiddenSquares.current += 2;
     } else {
-      if(!freeze) setFreeze(true);
-      setTimeout(() => modifyStats(clicked, setClicked, false, clickedSquares), 1000);
-      setTimeout(() => setFreeze(false), 1000);
+      setTimeout(() => {
+        modifyStats(clicked, setClicked, false, clickedIndex)
+        setFreeze(false)
+      }, 1000);
     }
+
+    clickedSquares.current.length = 0;
   }
 
   const restartGame = () => {
     setHidden(Array(16).fill(false));
     hiddenSquares.current = 0;
+    clickedSquares.current.length = 0;
     boardValues = fillBoardWithValues();
   }
 
