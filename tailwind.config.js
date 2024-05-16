@@ -40,11 +40,9 @@ module.exports = {
       bground: '#dbeafe',
       fground: '#172554',
       hover: '#bfdbfe',
-      black: '#ffffff',
       dbground: '#172554',
       dfground: '#bfdbfe',
       dhover: '#1e3a8a',
-      dblack: '#000000'
     }
   },
   plugins: [backfaceVisibility],

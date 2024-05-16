@@ -2,17 +2,17 @@ import React from "react";
 const Square = ({ hidden, clicked, performClick, backValue }) => {
 
   if(hidden) return(
-    <div className="w-16 h-16 m-2 transition-all duration-500"></div>
+    <div className="w-16 h-16 m-2"></div>
   );
 
   return (
     <div
-      className="w-16 h-16 m-2 rounded-xl justify-center items-center flex cursor-pointer border-2 border-solid dark:border-dfground border-fground dark:shadow-lg dark:shadow-dhover shadow-lg shadow-hover"
+      className="*:rounded-lg rounded-xl w-16 h-16 m-2 justify-center items-center flex cursor-pointer border-2 border-solid dark:border-dfground border-fground dark:shadow-lg dark:shadow-dhover shadow-lg shadow-hover"
       onClick={performClick}
     >
       {clicked ?
-        <div className="dark:bg-dfground bg-fground w-full h-full flex items-center rounded-lg justify-center dark:text-dblack text-black text-3xl animate-hflip">{backValue}</div> :
-        <div className="w-full h-full hover:rounded-lg hover:dark:bg-dhover hover:bg-hover transition-all duration-500"></div>
+        <div className="dark:bg-dfground bg-fground w-full h-full flex items-center rounded-lg justify-center dark:text-dbground text-bground text-3xl animate-hflip">{backValue}</div> :
+        <div className="w-full h-full hover:rounded-[10px] hover:dark:bg-dhover hover:bg-hover transition-all duration-500"></div>
       }
       {/*<section class="w-16 h-16 m-2 justify-center items-center flex cursor-pointer text-white">
         <div class="w-16 h-16 bg-transparent cursor-pointer group perspective">
