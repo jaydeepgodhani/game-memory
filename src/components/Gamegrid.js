@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Square from './Square';
 import fillBoardWithValues from '../utils/fillBoardWithValues';
 import { ArrowPathIcon } from '@heroicons/react/16/solid';
@@ -6,16 +6,23 @@ import modifyStats from '../utils/modifyStats';
 import playAudio from '../utils/playAudio';
 
 let boardValues = fillBoardWithValues();
-const clickAudio = new Audio('/onclick.mp3');
+const clickAudio = new Audio('/onclick4.wav');
 const hideAudio = new Audio('/hidden.wav');
 
-const Gamegrid = ({speakerOn}) => {
+const Gamegrid = ({speakerOn, restart, setRestart}) => {
 
   const [hidden, setHidden] = useState(Array(16).fill(false));
   const [clicked, setClicked] = useState(Array(16).fill(false));
   const [freeze, setFreeze] = useState(false);
   const hiddenSquares = useRef(0);
   const clickedSquares = useRef([]);
+
+  useEffect(() => {
+    if(restart) {
+      restartGame()
+      setRestart(false)
+    }
+  }, [restart])
 
   function performClick(index) {
     if(!freeze && !clicked[index]) {
@@ -37,7 +44,7 @@ const Gamegrid = ({speakerOn}) => {
         modifyStats(hidden, setHidden, true, clickedIndex)
         playAudio(speakerOn, hideAudio);
         setFreeze(false)
-      }, 1000);
+      }, 700);
       hiddenSquares.current += 2;
     } else {
       setTimeout(() => {
@@ -59,12 +66,12 @@ const Gamegrid = ({speakerOn}) => {
 
   if(hiddenSquares.current === 16) {
     return (
-      <ArrowPathIcon className='size-12 dark:text-dfground text-fground cursor-pointer' onClick={restartGame} />
+      <ArrowPathIcon className='size-12 dark:text-dfground text-fground cursor-pointer animate-longflip' onClick={restartGame} />
     )
   }
 
   return (
-    <div>
+    <div className='animate-longflip'>
       <div className="flex">
         <Square hidden={hidden[0]} clicked={clicked[0]} performClick={() => performClick(0)} backValue={boardValues[0]}/>
         <Square hidden={hidden[1]} clicked={clicked[1]} performClick={() => performClick(1)} backValue={boardValues[1]}/>

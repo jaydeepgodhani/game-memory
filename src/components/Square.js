@@ -11,7 +11,7 @@ const Square = ({ hidden, clicked, performClick, backValue }) => {
       onClick={performClick}
     >
       {clicked ?
-        <div className="dark:bg-dfground bg-fground w-full h-full flex items-center rounded-lg justify-center dark:text-dbground text-bground text-3xl animate-hflip">{backValue}</div> :
+        <div className="dark:bg-dfground bg-fground w-full h-full flex items-center rounded-lg justify-center dark:text-dbground text-bground text-4xl animate-hflip">{backValue}</div> :
         <div className="w-full h-full hover:rounded-[10px] hover:dark:bg-dhover hover:bg-hover transition-all duration-500"></div>
       }
       {/*<section class="w-16 h-16 m-2 justify-center items-center flex cursor-pointer text-white">

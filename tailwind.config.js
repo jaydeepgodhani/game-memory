@@ -34,6 +34,7 @@ module.exports = {
       },
       animation: {
         hflip: "hflip 0.5s ease",
+        longflip: "hflip 2s ease",
       },
     },
     colors: {

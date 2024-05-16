@@ -5,9 +5,10 @@ import {
   SpeakerXMarkIcon,
   SunIcon,
   MoonIcon,
+  ArrowPathIcon
 } from "@heroicons/react/16/solid";
 
-const iconCss = "size-10 dark:text-dfground text-fground cursor-pointer mx-4";
+const iconCss = "size-10 dark:text-dfground text-fground cursor-pointer mx-4 duration-0 transition-none";
 document.documentElement.classList.add('dark')
 
 let prevSpeakerVal = true;
@@ -21,11 +22,11 @@ if(localStorage.getItem('dark') === 'false') {
   document.documentElement.classList.remove('dark')
 }
 
-
 function App() {
 
   const [speakerOn, setSpeakerOn] = useState(prevSpeakerVal);
   const [darkOn, setDarkOn] = useState(prevDarkVal);
+  const [restart, setRestart] = useState(false);
 
   return (
     <div className="min-h-screen w-full dark:bg-dbground bg-bground">
@@ -61,9 +62,10 @@ function App() {
             document.documentElement.classList.add('dark')
           }} />
         )}
+        <ArrowPathIcon className={iconCss} onClick={() => setRestart(true)}/>
       </div>
       <div className="min-h-[80vh] flex justify-center items-center">
-        <Gamegrid speakerOn={speakerOn}/>
+        <Gamegrid speakerOn={speakerOn} restart={restart} setRestart={setRestart}/>
       </div>
     </div>
   );
