@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       animation: {
-        hflip: "hflip 0.5s ease-in-out",
+        hflip: "hflip 0.5s ease",
       },
     },
     colors: {

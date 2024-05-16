@@ -2,12 +2,12 @@ import React from "react";
 const Square = ({ hidden, clicked, performClick, backValue }) => {
 
   if(hidden) return(
-    <div className="w-16 h-16 m-2"></div>
+    <div className="w-16 h-16 m-2 transition-all duration-500"></div>
   );
 
   return (
     <div
-      className="w-16 h-16 m-2 rounded-xl justify-center items-center flex cursor-pointer border-2 border-solid dark:border-dfground border-fground"
+      className="w-16 h-16 m-2 rounded-xl justify-center items-center flex cursor-pointer border-2 border-solid dark:border-dfground border-fground dark:shadow-lg dark:shadow-dhover shadow-lg shadow-hover"
       onClick={performClick}
     >
       {clicked ?

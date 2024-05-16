@@ -18,7 +18,7 @@ const Gamegrid = ({speakerOn}) => {
   const clickedSquares = useRef([]);
 
   function performClick(index) {
-    if(!freeze) {
+    if(!freeze && !clicked[index]) {
       const newClicked = clicked.slice();
       newClicked[index] = true;
       clickedSquares.current.push(index);
@@ -51,6 +51,7 @@ const Gamegrid = ({speakerOn}) => {
 
   const restartGame = () => {
     setHidden(Array(16).fill(false));
+    setClicked(Array(16).fill(false));
     hiddenSquares.current = 0;
     clickedSquares.current.length = 0;
     boardValues = fillBoardWithValues();
