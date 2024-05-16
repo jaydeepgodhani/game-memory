@@ -7,12 +7,12 @@ const Square = ({ hidden, clicked, performClick, backValue }) => {
 
   return (
     <div
-      className="w-16 h-16 m-2 rounded-lg justify-center items-center flex cursor-pointer border-2 border-blue-200"
+      className="w-16 h-16 m-2 rounded-xl justify-center items-center flex cursor-pointer border-2 border-solid dark:border-dfground border-fground"
       onClick={performClick}
     >
       {clicked ?
-        <div className="bg-blue-200 w-full h-full flex items-center justify-center text-black text-2xl animate-hflip">{backValue}</div> :
-        <div className="w-full h-full hover:rounded-lg hover:bg-blue-900 text-blue-200 text-lg transition-all duration-500"></div>
+        <div className="dark:bg-dfground bg-fground w-full h-full flex items-center rounded-lg justify-center dark:text-dblack text-black text-3xl animate-hflip">{backValue}</div> :
+        <div className="w-full h-full hover:rounded-lg hover:dark:bg-dhover hover:bg-hover transition-all duration-500"></div>
       }
       {/*<section class="w-16 h-16 m-2 justify-center items-center flex cursor-pointer text-white">
         <div class="w-16 h-16 bg-transparent cursor-pointer group perspective">

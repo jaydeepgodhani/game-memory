@@ -22,6 +22,7 @@ const backfaceVisibility = plugin(function ({ addUtilities }) {
 });
 
 module.exports = {
+  darkMode: 'selector',
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -35,6 +36,16 @@ module.exports = {
         hflip: "hflip 0.5s ease-in-out",
       },
     },
+    colors: {
+      bground: '#dbeafe',
+      fground: '#172554',
+      hover: '#bfdbfe',
+      black: '#ffffff',
+      dbground: '#172554',
+      dfground: '#bfdbfe',
+      dhover: '#1e3a8a',
+      dblack: '#000000'
+    }
   },
   plugins: [backfaceVisibility],
 };

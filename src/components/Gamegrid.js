@@ -58,7 +58,7 @@ const Gamegrid = ({speakerOn}) => {
 
   if(hiddenSquares.current === 16) {
     return (
-      <ArrowPathIcon className='size-12 text-blue-200 cursor-pointer' onClick={restartGame} />
+      <ArrowPathIcon className='size-12 dark:text-dfground text-fground cursor-pointer' onClick={restartGame} />
     )
   }
 

@@ -7,7 +7,8 @@ import {
   MoonIcon,
 } from "@heroicons/react/16/solid";
 
-const iconCss = "size-10 text-blue-200 cursor-pointer mx-4";
+const iconCss = "size-10 dark:text-dfground text-fground cursor-pointer mx-4";
+document.documentElement.classList.add('dark')
 
 let prevSpeakerVal = true;
 if(localStorage.getItem('speaker') === 'false') {
@@ -17,7 +18,9 @@ if(localStorage.getItem('speaker') === 'false') {
 let prevDarkVal = true;
 if(localStorage.getItem('dark') === 'false') {
   prevDarkVal = false;
+  document.documentElement.classList.remove('dark')
 }
+
 
 function App() {
 
@@ -25,7 +28,7 @@ function App() {
   const [darkOn, setDarkOn] = useState(prevDarkVal);
 
   return (
-    <div className="bg-blue-950 min-h-screen w-full">
+    <div className="min-h-screen w-full dark:bg-dbground bg-bground">
       <div className="flex justify-center p-2">
         {speakerOn ? (
           <SpeakerWaveIcon
@@ -44,20 +47,22 @@ function App() {
             }}
           />
         )}
-        score yo
+
         {darkOn ? (
           <SunIcon className={iconCss} onClick={() => {
             setDarkOn(false)
             localStorage.setItem('dark', false)
+            document.documentElement.classList.remove('dark')
           }} />
         ) : (
           <MoonIcon className={iconCss} onClick={() => {
             setDarkOn(true)
             localStorage.setItem('dark', true)
+            document.documentElement.classList.add('dark')
           }} />
         )}
       </div>
-      <div className="min-h-[80vh] flex justify-center items-center bg-blue-950">
+      <div className="min-h-[80vh] flex justify-center items-center">
         <Gamegrid speakerOn={speakerOn}/>
       </div>
     </div>
